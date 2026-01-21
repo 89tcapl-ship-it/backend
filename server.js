@@ -25,8 +25,11 @@ const app = express();
 connectDB();
 
 // Middleware
+// Normalize frontend URL (remove trailing slash if present)
+const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: frontendUrl,
     credentials: true,
 }));
 
