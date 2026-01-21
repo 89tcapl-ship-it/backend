@@ -8,7 +8,7 @@ const connectDB = async () => {
     });
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
-    
+
     // Handle connection events
     mongoose.connection.on('error', (err) => {
       console.error('❌ MongoDB connection error:', err);
@@ -27,7 +27,9 @@ const connectDB = async () => {
 
   } catch (error) {
     console.error('❌ Error connecting to MongoDB:', error.message);
-    process.exit(1);
+    // In serverless environments, we don't want to exit the process
+    // as it creates vague "FUNCTION_INVOCATION_FAILED" messages.
+    // Keeping it alive allows for better log visibility.
   }
 };
 

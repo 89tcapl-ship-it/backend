@@ -25,11 +25,20 @@ const app = express();
 connectDB();
 
 // Middleware
-// Normalize frontend URL (remove trailing slash if present)
-const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+// Normalize frontend URL and allow both with and without trailing slash
+const allowedOrigins = [
+    (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, ''),
+    (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '') + '/'
+];
 
 app.use(cors({
-    origin: frontendUrl,
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 
@@ -81,16 +90,21 @@ app.get('/health', (req, res) => {
     });
 });
 
-// API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/contact', contactRoutes);
-app.use('/api/services', serviceRoutes);
-app.use('/api/blog', blogRoutes);
-app.use('/api/settings', settingsRoutes);
-app.use('/api/upload', uploadRoutes);
-app.use('/api/content', pageContentRoutes);
-app.use('/api/invitation', invitationRoutes);
+// API Routes - Mounted at both root and /api for flexibility
+const mountRoutes = (basePath) => {
+    app.use(`${basePath}/auth`, authRoutes);
+    app.use(`${basePath}/users`, userRoutes);
+    app.use(`${basePath}/contact`, contactRoutes);
+    app.use(`${basePath}/services`, serviceRoutes);
+    app.use(`${basePath}/blog`, blogRoutes);
+    app.use(`${basePath}/settings`, settingsRoutes);
+    app.use(`${basePath}/upload`, uploadRoutes);
+    app.use(`${basePath}/content`, pageContentRoutes);
+    app.use(`${basePath}/invitation`, invitationRoutes);
+};
+
+mountRoutes('/api');
+mountRoutes(''); // Also mount at root level to prevent 404 if /api is missing in frontend config
 
 // 404 handler
 app.use((req, res) => {
