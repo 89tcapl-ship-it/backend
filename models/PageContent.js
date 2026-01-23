@@ -61,6 +61,7 @@ function getDefaultSections(pageName) {
                 content: 'We provide comprehensive corporate advisory services including company registration, MCA compliance, GST, and taxation support.',
                 buttonText: 'Get Started',
                 buttonLink: '/contact',
+                imageUrl: '/hero-section.png',
                 order: 1,
                 isActive: true,
             },
@@ -79,6 +80,7 @@ function getDefaultSections(pageName) {
                 title: 'About 89T Corporate Advisors',
                 subtitle: 'Your Compliance Partner',
                 content: 'We are a compliance-focused corporate advisory firm dedicated to supporting startups and growing businesses with registration, taxation, and business advisory services.',
+                imageUrl: '/about-hero.png',
                 order: 1,
                 isActive: true,
             },
@@ -90,14 +92,33 @@ function getDefaultSections(pageName) {
                 isActive: true,
             },
         ],
-        services: [],
-        blog: [],
+        services: [
+            {
+                sectionId: 'header',
+                title: 'Our Services',
+                subtitle: 'Structured, reliable and compliance-led business services.',
+                imageUrl: '/services-hero.png',
+                order: 1,
+                isActive: true,
+            }
+        ],
+        blog: [
+            {
+                sectionId: 'header',
+                title: 'Knowledge Center',
+                subtitle: 'Latest insights on corporate compliance and business growth.',
+                imageUrl: '/blog-hero.png',
+                order: 1,
+                isActive: true,
+            }
+        ],
         contact: [
             {
                 sectionId: 'header',
                 title: 'Get in Touch',
                 subtitle: 'We\'re here to help',
                 content: 'Have questions about our services? Fill out the form below and our team will get back to you shortly.',
+                imageUrl: '/contact-hero.png',
                 order: 1,
                 isActive: true,
             },
