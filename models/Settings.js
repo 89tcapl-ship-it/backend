@@ -10,6 +10,82 @@ const settingsSchema = new mongoose.Schema(
             type: String,
             default: 'A compliance-focused corporate advisory firm supporting startups and growing businesses.',
         },
+        navbar: {
+            siteName: {
+                type: String,
+                default: '89T Corporate Advisors',
+            },
+            startingBusinessLabel: {
+                type: String,
+                default: 'Starting a Business',
+            },
+            supportServicesLabel: {
+                type: String,
+                default: 'Support Services',
+            },
+            compliancesLabel: {
+                type: String,
+                default: 'Compliances',
+            },
+            fundingLabel: {
+                type: String,
+                default: 'Funding',
+            },
+            auditsLabel: {
+                type: String,
+                default: 'Audits',
+            },
+            aboutLabel: {
+                type: String,
+                default: 'About',
+            },
+            entityFormationHeading: {
+                type: String,
+                default: 'Entity Formation',
+            },
+            alliedRegistrationsHeading: {
+                type: String,
+                default: 'Allied Registrations',
+            },
+            viewAllServicesLabel: {
+                type: String,
+                default: 'View All Services',
+            },
+            headerCtaText: {
+                type: String,
+                default: '+918958889589',
+            },
+            headerCtaLink: {
+                type: String,
+                default: '/contact',
+            },
+        },
+        footer: {
+            description: {
+                type: String,
+                default: 'A compliance-focused corporate advisory firm supporting startups and growing businesses with registration, taxation, and business advisory services.',
+            },
+            tagline: {
+                type: String,
+                default: 'A Compliant Business is a Confident Business',
+            },
+            registeredOfficeLabel: {
+                type: String,
+                default: 'Registered Office:',
+            },
+            emailLabel: {
+                type: String,
+                default: 'Email:',
+            },
+            phoneLabel: {
+                type: String,
+                default: 'Phone:',
+            },
+            disclaimer: {
+                type: String,
+                default: 'This website is for informational purposes only and does not constitute legal or financial advice.',
+            },
+        },
         contactEmail: {
             type: String,
             default: '89tcapl@gmail.com',
