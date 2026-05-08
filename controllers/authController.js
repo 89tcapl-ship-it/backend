@@ -76,7 +76,7 @@ export const login = async (req, res) => {
         if (!isHuman) {
             return res.status(400).json({
                 success: false,
-                message: 'Security check failed. Please refresh and try again.',
+                message: 'Captcha required, please refresh and try again.',
             });
         }
 
